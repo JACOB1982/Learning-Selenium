@@ -1,0 +1,35 @@
+Finding Elements in Selenium
+-------------------------------
+- Using browser specific developer tools
+
+- findElement() via WebDriver interface, returns WebElement
+	By.id - driver.findElement(By.id(element_id))
+	By.name - driver.findElement(By.name(element_name))
+	By.className - driver.findElement(By.className(element_class))
+	By.tagName - driver.findElement(By.tagName(htmltagname))
+	By.linkText - driver.findElement(By.linkText(linktext))
+	By.partialLinkText - driver.findElement(By.partialLinkText(linktext))
+	By.cssSelector - driver.findElement(By.cssSelector(cssSelector))
+	By.xpath - driver.findElement(By.xpath(xpath_query))
+	
+- findElements() via WebElements interface
+	driver.findElements(By.linkText(linkText))
+	driver.findElements(By.tagName(htmltagname))
+	driver.findElements(By.linkText(linktext))	
+	driver.findElements(By.id(element_id))
+	..etc
+
+The difference bewteen findElements and findElements is , 
+
+if there is a match:
+	- returns instance of WebElement
+	- returns List of WebElements
+if there is an exception;
+	-findElement returns NoSuchElementFound   (not to confuse with StaleElementReference Exception)
+	-findElements returns Empty List
+
+PS: Use Xpath if you want to move forward and Backward the DOM structure. CSS offers only a forward movement.
+
+
+
+	
