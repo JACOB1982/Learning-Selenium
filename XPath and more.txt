@@ -1,0 +1,103 @@
+XPath
+-------------
+Terminology
+------------
+Nodes
+Attributes
+Atomic Values 
+Parents
+Children
+Siblings
+Ancestors
+Descendents
+Selecting Nodes
+---------------
+nodename ->represents given node name
+/        ->absolute path
+//       ->relative path
+.        ->current node
+..       ->parent of current element
+@        ->represents attribute
+
+
+Ex: webElement usr = driver.findElementBy(By.xpath("/html/bidy/div/for/input"))
+Ex: webElement usr = driver.findElementBy(By.xpath("//input"))
+Ex: webElement usr = driver.findElementBy(By.xpath("//input[@id='loginname']"))     The part in [] is called a predicate
+Ex: webELement prev = driver.findElement(By.xpath("//img[@alt='back']"))
+
+Performing partial matches
+-----------------------------
+The below functions can be effectively used when the attributes value change dynamically
+
+starts-with()
+ends-with()
+contains()
+Ex: webElement usr = driver.findElementBy(By.xpath("//input[starts-with(@id,'btn')]"))
+Ex: webElement prev = driver.findElementBy(By.xpath("//input[ends-with(@id,'_newBtn')]"))
+Ex: webElement prev = driver.findElementBy(By.xpath("//input[contains(@id,'_newBtn')]"))
+Ex: webElement usr = driver.findElementBy(By.xpath("//input[@*='BCC']"))
+
+Selecting Unknown Nodes
+------------------------------
+Using * & node()
+
+Ex: webElement click = driver.findElementBy(By.xpath("//*[@id='Submit']"))
+Ex: webElement click = driver.findElementBy(By.xpath("//td/node()"))
+
+Selecting more than one node
+---------------------------------
+we can use UNION operator '|' in a Xpath expression to combine several paths together
+Ex: webElement unionOps = driver.findElementBy(By.xpath("//table/tr[1] | //table/tr[last()]"))
+
+XPATH Axes
+-------------
+
+To identify elements based on relationships with other elements in the document we can use axes, it will help for dynamic elements,
+such as dynamic values in a table displayed on a web page
+ancestor
+desc endant - axis contains the descendants of the context node
+following
+following-sibling
+preceding-sibling
+child
+parent
+self
+PS: The ancestor, descendent,following, preceding, self do not overlap and together contain all nodes in the document
+
+Syntax for Location Step
+---------------------------
+Axisname::node[predicate]
+App: ndtv.com Browser: Firefox
+
+//*[attribute=’value’]/child::tagname
+Ex://div[@class='featured_story']/child::div      
+
+//*[attribute=’value’]/parent::tagname
+Ex://a[contains(text(),'Coronavirus')]/parent::div 
+
+//*[attribute=’value’]/following::tagname
+Ex://div[@class='featured_cont']/following::div    
+
+//*[attribute=’value’]/preceding::tagname
+Ex://div[@class='featured_cont']/preceding::div
+
+//current html tag[@attribute =’value’]/following-sibling:: sibling tag[@attribute =’value’]  
+Ex://div[@class='lhs_col_two']/following-sibling::div
+
+//current html tag[@attribute =’value’]/preceding-sibling:: previous tag[@attribute =’value’]  
+Ex: //div[@class='lhs_col_two']/preceding-sibling::div
+
+//*[attribute=’value’]/ancestor::tagname
+Ex://div[@class='lhs_col_two']/ancestor::div
+
+//*[attribute=’value’]/descendant::tagname
+Ex://div[@class='lhs_col_two']/descendant::div
+
+other examples
+-----------------
+//div[@class='lhs_col_two']/descendant-or-self::div
+//div[@class='lhs_col_two']/ancestor-or-self::div
+//div[@class='lhs_col_two']/child::*
+
+PS: while we can type down all the possible xpaths its time consuming. There is a wonderful off the shelf option to speed up this process.
+    CHROPATH, its a chrome plugin,one can install and use it. It has a wide variety of options and provides accurate xpath.
